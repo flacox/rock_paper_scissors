@@ -48,7 +48,7 @@
             let computerWins = 0;
 
             for (let x = 0; x < 5; x++){
-                let playerChoice = prompt("Rock, paper, scissors?");
+                let playerChoice = prompt("Rock, Paper, scissors?");
                 playerChoice = playerChoice.toLocaleLowerCase();
                 let computerSelection = computerPlay();
                 let gameAction = playRound(playerChoice, computerSelection);
@@ -64,7 +64,7 @@
                     console.log("It's a Tie!");
                 }
             }
-            
+
             if (playerWins > computerWins){
                 console.log("Congratulations, you won the game!");
                 console.log("Scores, You: " + playerWins + " Computer: " + computerWins);
