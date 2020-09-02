@@ -10,7 +10,24 @@
 </head>
 <body>
 
+    <h1>Playing Rock, Paper, Scissors</h1>
+
+    <h3>Let's play</h3>
+
+    <div id="gameScore"></div>
+
+    <p>Select your chioce:</p>
+
+    <div class="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div><br>
+
+    <div id="results"></div>
+
     <script>
+    	let playerChoice = "";
 
         function computerPlay(){
             let choice = Math.floor(Math.random() * 3) + 1
@@ -42,41 +59,90 @@
                 }
 
             }
-
-        function game(){
             let playerWins = 0;
             let computerWins = 0;
+            let tieWins = 0;
 
-            for (let x = 0; x < 5; x++){
-                let playerChoice = prompt("Rock, Paper, scissors?");
+        function game(){
+            
+
+            // for (let x = 0; x < 5; x++){
+                // let playerChoice = prompt("Rock, Paper, scissors?");
                 playerChoice = playerChoice.toLocaleLowerCase();
                 let computerSelection = computerPlay();
                 let gameAction = playRound(playerChoice, computerSelection);
-                console.log("the computer choose: " + computerSelection + " and you choose: " + playerChoice);
+                para.textContent = "the computer choose: " + computerSelection + " and you choose: " + playerChoice;
+        		results.appendChild(para);
+                // console.log("the computer choose: " + computerSelection + " and you choose: " + playerChoice);
 
                 if (gameAction == "win"){
                     playerWins += 1;
-                    console.log("You won this round!");
+                    results.appendChild(playerWinsPara);
                 }else if (gameAction == "loss"){
                     computerWins += 1;
-                    console.log("You lost this round!");
+                    results.appendChild(computerWinsPara);
                 }else{
-                    console.log("It's a Tie!");
+                	tieWins += 1;
+                    results.appendChild(tieRound);
                 }
-            }
 
-            if (playerWins > computerWins){
-                console.log("Congratulations, you won the game!");
-                console.log("Scores, You: " + playerWins + " Computer: " + computerWins);
-            }else if (playerWins < computerWins){
-                console.log("Loseeer, the computer beast you!!!!");
-                console.log("Scores, You: " + playerWins + " Computer: " + computerWins);
-            }else{
-                console.log("It's a Tie!");
-            }
+                playerWinsScore.textContent = "Player Wins: " + playerWins;
+				computerWinsScore.textContent = "Pc Wins: " + computerWins;
+				tieScore.textContent = "Tie: " + tieWins;
+				gameScore.appendChild(playerWinsScore);
+				gameScore.appendChild(computerWinsScore);
+				gameScore.appendChild(tieScore);
+            // }
+
+            // if (playerWins > computerWins){
+            //     console.log("Congratulations, you won the game!");
+            //     console.log("Scores, You: " + playerWins + " Computer: " + computerWins);
+            // }else if (playerWins < computerWins){
+            //     console.log("Loseeer, the computer beast you!!!!");
+            //     console.log("Scores, You: " + playerWins + " Computer: " + computerWins);
+            // }else{
+            //     console.log("It's a Tie!");
+            // }
         }
 
-        game();
+        // game();
+//////////////////////////////////////////////////////////////////
+		const gameScore = document.querySelector('#gameScore');
+		const playerWinsScore = document.createElement('h4');
+		const computerWinsScore = document.createElement('h4');
+		const tieScore = document.createElement('h4');
+		
+
+
+        const results = document.querySelector('#results');
+        const para = document.createElement('p');
+        const playerWinsPara = document.createElement('p');
+        playerWinsPara.textContent = 'You won this round!';
+        const computerWinsPara = document.createElement('p');
+        computerWinsPara.textContent = 'You lost this round!';
+        const tieRound = document.createElement('p');
+        tieRound.textContent = 'It is a Tie!';
+        
+        
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+        	button.addEventListener('click', () => {
+        		// alert(button.id);
+        		playerChoice = (button.id);
+        		// console.log(playerChoice);
+        		game();
+
+        	});
+        });
+
+        
+
+        
+        
+
+
+
 
     </script>
     
